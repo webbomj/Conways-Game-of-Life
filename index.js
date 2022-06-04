@@ -30,7 +30,7 @@ let createTable = (size) => {
 }
 createTable(tablesSize)
 
-//Create live
+//Create starts block
 let mouseDown = false
 AppContainer.addEventListener('mousedown', () => mouseDown = true)
 AppContainer.addEventListener('mouseup', () => mouseDown = false)

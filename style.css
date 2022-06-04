@@ -55,6 +55,11 @@ body {
   cursor: pointer;
 }
 
+.play:hover {
+
+  background-color: var(--red);
+}
+
 #App {
   margin: 20px auto;
   background-color: var(--green);
