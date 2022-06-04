@@ -1,0 +1,37 @@
+* {
+  box-sizing: border-box;
+}
+
+.header {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  padding: 5px;
+  margin-bottom: 20px;
+  background-color: aquamarine;
+}
+
+.header__title {
+
+}
+
+.header__button {
+  text-decoration: none;
+  border: 1px solid black;
+  padding: 5px;
+}
+
+#App {
+  margin: 0 auto;
+  background-color: cadetblue;
+}
+
+.block {
+  width: 20px;
+  height: 20px;
+  background-color: white;
+}
+
+.alive {
+  background-color: black;
+}
