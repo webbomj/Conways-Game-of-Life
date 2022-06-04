@@ -1,4 +1,5 @@
 let AppContainer = document.getElementById('App')
+let ButtonContainer = document.getElementById('Button')
 //Create table
 let tablesSize = 25
 let allBoxes = []
@@ -6,9 +7,10 @@ let allBoxes = []
 let createTable = (size) => {
   let arr = Array(size).fill('1')
   let div = document.createElement('div')
-  div.classList.add('block')
+  div.classList.add('play')
+  div.textContent = 'Play'
   div.addEventListener('click', () => startGeneration())
-  AppContainer.append(div)
+  ButtonContainer.append(div)
   arr.forEach(el => {
     let tr = document.createElement('tr')
     let arrOfTr = []
