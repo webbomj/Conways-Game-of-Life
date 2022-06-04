@@ -31,13 +31,9 @@ let createTable = (size) => {
 createTable(tablesSize)
 
 //Create starts block
-let mouseDown = false
-AppContainer.addEventListener('mousedown', () => mouseDown = true)
-AppContainer.addEventListener('mouseup', () => mouseDown = false)
-AppContainer.addEventListener('mousemove', (e) => createLife(e))
+AppContainer.addEventListener('click', (e) => createLife(e))
 
 let createLife = (e) => {
-  if (!mouseDown) return
   if (e.target.tagName === 'TD') {
     e.target.classList.add('alive')
   }
