@@ -1,5 +1,9 @@
 let AppContainer = document.getElementById('App')
 let ButtonContainer = document.getElementById('Button')
+
+let isStarted = false
+let startInterval
+
 //Create table
 let tablesSize = 25
 let allBoxes = []
@@ -41,40 +45,45 @@ let createLife = (e) => {
 
 // Start Generation
 let startGeneration = () => {
-  console.log('start')
+  isStarted = !isStarted
+  if (isStarted) {  
+    document.querySelector('.play').textContent = 'Stop'
+    //Start Comparison
+    let start = () => {
+      let arrOfTrNodes = []
+      allBoxes.forEach((tr, idxTr) => {
+        tr.forEach((td, tdIdx) => {
+          let aliveBlock = td.classList.contains('alive')
 
-  //Start Comparison
-  let start = () => {
-    let arrOfTrNodes = []
-    allBoxes.forEach((tr, idxTr) => {
-      tr.forEach((td, tdIdx) => {
-        let aliveBlock = td.classList.contains('alive')
+          let quantityNeighbors = countNeighbors(idxTr, tdIdx)
 
-        let quantityNeighbors = countNeighbors(idxTr, tdIdx)
+          if ((quantityNeighbors === 2 || quantityNeighbors === 3) && aliveBlock === true) {
+            return
+          }
+          if (quantityNeighbors <= 1 && aliveBlock === true) {
+            arrOfTrNodes.push(td)
+            // td.classList.remove('alive')
+          }
 
-        if ((quantityNeighbors === 2 || quantityNeighbors === 3) && aliveBlock === true) {
-          return
-        }
-        if (quantityNeighbors <= 1 && aliveBlock === true) {
-          arrOfTrNodes.push(td)
-          // td.classList.remove('alive')
-        }
+          if (quantityNeighbors > 3 && aliveBlock === true) {
+            arrOfTrNodes.push(td)
+            // td.classList.remove('alive')
+          }
 
-        if (quantityNeighbors > 3 && aliveBlock === true) {
-          arrOfTrNodes.push(td)
-          // td.classList.remove('alive')
-        }
-
-        if (quantityNeighbors === 3 && aliveBlock === false) {
-          arrOfTrNodes.push(td)
-          // td.classList.add('alive')
-        }
-        
+          if (quantityNeighbors === 3 && aliveBlock === false) {
+            arrOfTrNodes.push(td)
+            // td.classList.add('alive')
+          }
+          
+        })
       })
-    })
-    changeClasses(arrOfTrNodes)
-  }
-  setInterval(() => start(), 100)
+      changeClasses(arrOfTrNodes)
+    }
+    startInterval = setInterval(() => start(), 100)
+ } else {
+  document.querySelector('.play').textContent = 'Play'
+   clearInterval(startInterval)
+ }
 }
 
 // Change Blocks
